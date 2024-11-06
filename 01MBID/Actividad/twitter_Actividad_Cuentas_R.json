@@ -1,0 +1,133 @@
+[{
+  "_id": {
+    "$oid": "644ce86ffc978618d25518b2"
+  },
+  "Unique_ID": 1,
+  "org_name": "'El Mundo'",
+  "org_url": null,
+  "Twitter_URL": "https://twitter.com/elmundoes",
+  "Twitter_handle": "elmundoes",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+},{
+  "_id": {
+    "$oid": "644ce86ffc978618d25518b3"
+  },
+  "Unique_ID": 2,
+  "org_name": "'El Pais'",
+  "org_url": null,
+  "Twitter_URL": "https://twitter.com/el_pais",
+  "Twitter_handle": "el_pais",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+},{
+  "_id": {
+    "$oid": "644ce86ffc978618d25518b4"
+  },
+  "Unique_ID": 3,
+  "org_name": "'La Vanguardia'",
+  "org_url": null,
+  "Twitter_URL": "https://twitter.com/LaVanguardia",
+  "Twitter_handle": "LaVanguardia",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+},{
+  "_id": {
+    "$oid": "644ce86ffc978618d25518b5"
+  },
+  "Unique_ID": 4,
+  "org_name": "'RafaelNadal'",
+  "org_url": null,
+  "Twitter_URL": "'https://twitter.com/RafaelNadal",
+  "Twitter_handle": "RafaelNadal",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+},{
+  "_id": {
+    "$oid": "644ce86ffc978618d25518b6"
+  },
+  "Unique_ID": 5,
+  "org_name": "'Pedro Sanchez'",
+  "org_url": null,
+  "Twitter_URL": "https://twitter.com/sanchezcastejon",
+  "Twitter_handle": "sanchezcastejon",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+},{
+  "_id": {
+    "$oid": "644ce870fc978618d25518b7"
+  },
+  "Unique_ID": 6,
+  "org_name": "'Complutense'",
+  "org_url": null,
+  "Twitter_URL": "https://twitter.com/unicomplutense",
+  "Twitter_handle": "unicomplutense",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+},{
+  "_id": {
+    "$oid": "644ce870fc978618d25518b8"
+  },
+  "Unique_ID": 7,
+  "org_name": "'UC3M'",
+  "org_url": null,
+  "Twitter_URL": "https://twitter.com/uc3m",
+  "Twitter_handle": "uc3m",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+},{
+  "_id": {
+    "$oid": "644ce870fc978618d25518b9"
+  },
+  "Unique_ID": 8,
+  "org_name": "'Politécnica Madrid'",
+  "org_url": null,
+  "Twitter_URL": "https://twitter.com/La_UPM",
+  "Twitter_handle": "La_UPM",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+},{
+  "_id": {
+    "$oid": "644ce870fc978618d25518ba"
+  },
+  "Unique_ID": 9,
+  "org_name": "'Valencia CF'",
+  "org_url": null,
+  "Twitter_URL": "https://twitter.com/valenciacf",
+  "Twitter_handle": "valenciacf",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+},{
+  "_id": {
+    "$oid": "644ce870fc978618d25518bb"
+  },
+  "Unique_ID": 10,
+  "org_name": "'AlejandroSanz'",
+  "org_url": null,
+  "Twitter_URL": "https://twitter.com/AlejandroSanz",
+  "Twitter_handle": "AlejandroSanz",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+},{
+  "_id": {
+    "$oid": "644ce870fc978618d25518bc"
+  },
+  "Unique_ID": 11,
+  "org_name": "'Juan Luis Guerra'",
+  "org_url": null,
+  "Twitter_URL": "https://twitter.com/JuanLuisGuerra",
+  "Twitter_handle": "JuanLuisGuerra",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+},{
+  "_id": {
+    "$oid": "644ce870fc978618d25518bd"
+  },
+  "Unique_ID": 12,
+  "org_name": "'Luis Fonsi'",
+  "org_url": null,
+  "Twitter_URL": "https://twitter.com/LuisFonsi",
+  "Twitter_handle": "LuisFonsi",
+  "earliest_tweet_in_db": null,
+  "number_of_tweets_in_db": null
+}]
