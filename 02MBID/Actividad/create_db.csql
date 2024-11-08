@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS israelbru.tabla1  (
     paciente_alergias set<text>
 );
 
--- Create a table2 -> Cita Medico
+-- Create a table2 -> Cita - Medico
 CREATE TABLE IF NOT EXISTS israelbru.tabla2  (
 	medico_dni int,
     medico_nombre text,
@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS israelbru.tabla3  (
     tratamiento_id int,
 	tratamiento_descripcion text,
     tratamiento_costo text,
-    PRIMARY KEY ((cita_id, tratamiento_id), paciente_dni)
-);
+    PRIMARY KEY (paciente_dni, cita_id, tratamiento_id)
+) ;
 
 -- Create a table4 -> cuantas citas tiene un paciente
 CREATE TABLE IF NOT EXISTS israelbru.tabla4  (
@@ -48,16 +48,16 @@ CREATE TABLE IF NOT EXISTS israelbru.tabla4  (
 
 -- Create a table5 -> todas las asociaciones entre recetas y medicamentos
 CREATE TABLE IF NOT EXISTS israelbru.tabla5  (
-	paciente_dni int,
+    receta_id int,
+    receta_fecha_emision date,
+    paciente_dni int,
     paciente_nombre text,
     medico_dni int,
     medico_nombre text,
-    receta_id int,
-    receta_fecha_emision date,
     medicamento_codigo int,
     medicamento_nombre text,
     medicamento_dosis text,
-    PRIMARY KEY ((receta_fecha_emision, receta_id), medicamento_codigo)
+    PRIMARY KEY (receta_fecha_emision, medico_nombre, paciente_nombre, receta_id, medicamento_codigo, paciente_dni, medico_dni)
 );
 
 -- Create a table6 -> pacientes que tienen una alergia en concreto 
