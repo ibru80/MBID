@@ -2,16 +2,6 @@
 CREATE KEYSPACE practica2
 WITH durable_writes = true AND replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1};
 
-CREATE TABLE practica2.clientes_por_id_copy1 (
-	preferencia text,
-	id int,
-	direccion text,
-	dni text,
-	nombre text,
-	preferencias SET<text>,
-	PRIMARY KEY (preferencia, id)
-) WITH CLUSTERING ORDER BY ( id ASC );
-
 CREATE TABLE practica2.cliente_producto (
 	cliente_nombre text,
 	cliente_dni text,
@@ -35,7 +25,7 @@ CREATE TABLE practica2.productos_cliente (
 	PRIMARY KEY (producto_id, cliente_id)
 ) WITH CLUSTERING ORDER BY ( cliente_id ASC );
 
-CREATE TABLE practica2."NumPedidos" (
+CREATE TABLE practica2.numpedidos (
 	pedido_fecha date,
 	numpedidos counter,
 	PRIMARY KEY (pedido_fecha)
