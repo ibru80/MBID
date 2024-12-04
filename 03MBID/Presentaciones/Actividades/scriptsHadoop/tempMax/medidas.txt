@@ -1,0 +1,11 @@
+1999	Enero	1
+1999	Enero	5
+1999	Enero	3
+1999	Enero	2
+1999	Febrero	4
+1999	Febrero	2
+2000	Enero	3
+2000	Enero	6
+2000	Febrero	6
+2000	Febrero	2
+2001	Abril	3
