@@ -1,0 +1,47 @@
+
+Hola a todos, añado algunos sitios dónde poder obtener información a parte de la extensa lista que ya han aportado mis compañeros anteriormente.
+
+Repositorios de conjuntos de datos más utilizados:
+
+- Kaggle: es de las mayores referencias en el mundo del análisis de datos, ya que a parte de ofrecer dataset de datos, también existen aportaciones como modelos de analásis de datos vinculados al dataset ofrecido, notebooks y más recursos.
+Acceso: https://www.kaggle.com/datasets
+
+- Datahub.io: repositorio de datasets que incluyen algunos que comentaremos más abajo.
+Acceso: https://datahub.io/collections
+
+- Google Dataset Search: buscador de conjuntos de datos a través de la recopilación de información de google
+Acceso: https://datasetsearch.research.google.com/
+
+Hay alguno más que se mencionan en diversas páginas.
+
+A continuación vamos a nombrar algunos fuentes de datos que se pueden consultar de forma pública:
+
+European Environment Agency:  catálogo extenso de datos recopilados de los paises de europa, hay bastante información y en algunos casos es excesivamente detallado (registro de coches por modelos):
+
+Acceso: https://www.eea.europa.eu/en/datahub
+
+Catálgo de datos que ofrece el gobierno de EEUU:
+Acceso: https://catalog.data.gov/dataset
+
+Catálogo extenso de datos de los datos públicos del gobierno español:
+Acceso: https://datos.gob.es/es/catalogo
+
+- Datos ofrecidos por AEMET (Agencia de meteorología Española), ofrece el consumo de datos a través de la extracción de un API, es necesario darse de alta como desarrollador para obtener una clave de acceso al API:
+API Data de AEMET (Meteorología): 
+Acceso: https://opendata.aemet.es/centrodedescargas/inicio
+
+Instituto Nacional de Estadística (INE España), puedes acceder a bastantes datos, pero resulta algo complejo y no siempre se ofrecen los datos "desagregados", se ofrecen clasificados por años, o por comunidades autónomas, es complejo obtener algunos datos: 
+Acceso: https://www.ine.es/ss/Satellite?L=0&c=Page&cid=1259942408928&p=1259942408928&pagename=ProductosYServicios%2FPYSLayout
+
+Comisión Nacional de los Mercados y la Competencia (CNMC) ES: comparte dataset, pero no siempre podemos encontrar la información histórica que buscamos; por ejemplo no puedes obtener datos de consumo de todos los sectores de producción energéticos en españa, están sesgados por sector incluso subivididos en el caso del gas.
+Acceso: https://data.cnmc.es/
+
+British Oceanic Data Center: contiene dataset con información recopilada de los oceanos:
+Acceso: https://www.bodc.ac.uk/data/high_volume_data/
+
+AcuuWeather: página de recursos de datos meteorológicos, se accede a través de API, ya que permite obtener datos reales y alarmas meotorologicas
+Acceso: https://developer.accuweather.com/apis
+
+Como conclusión comentar que he estado buscando dataset para la actividad 1 de esta asignatura. Incialmente iba a descargar datos históricos de AEMET, pero al final lo descarte. Después he intentado crear un dataset que abarque por municipio (España) el consumo energético por sector (gas, petroleo, eólicas, etc...); pero me ha resultado bastante complejo de obtener, ya que los formatos que se ofrecen en la página de cnmc y el censo de población del INE no acababan de corresponderse a parte de no poder obtener datos mensuales de consumo por municipio con un par de años de histórico.
+
+Resaltar, que dependiendo de que estemos buscando para explorar debemos elegir ir a buscarlo de una forma o de otra dependiendo del problema que queremos explorar, pero no siempre hay un "dataset" completo que pueda solucionar el problema, pero cogiendo de varias fuentes podemos obtener un dataset más completo.
