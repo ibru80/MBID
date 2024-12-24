@@ -1,0 +1,116 @@
+services:
+    namenode:
+      image: apache/hadoop:3.4.1
+      hostname: hadoop
+      container_name: hadoop
+      user: root
+      command: ["hdfs", "namenode"]
+      ports:
+        - 9870:9870
+      environment:
+        ENSURE_NAMENODE_DIR: "/tmp/hadoop-root/dfs/name"
+      volumes:
+        - ./shared:/opt/hadoop/input_files
+      env_file:
+        - ./hadoop.config
+      networks:
+        - hdfs_net
+
+    datanode_1:
+      image: apache/hadoop:3.4.1
+      command: ["hdfs", "datanode"]
+      env_file:
+        - ./hadoop.config
+      networks:
+        - hdfs_net
+
+    datanode_2:
+      image: apache/hadoop:3.4.1
+      command: ["hdfs", "datanode"]
+      env_file:
+        - ./hadoop.config
+      networks:
+        - hdfs_net
+
+    resourcemanager:
+      image: apache/hadoop:3.4.1
+      command: ["yarn", "resourcemanager"]
+      ports:
+        - 8088:8088
+      env_file:
+        - ./hadoop.config
+      networks:
+        - hdfs_net
+
+    nodemanager:
+        image: apache/hadoop:3.4.1
+        command: ["yarn", "nodemanager"]
+        environment:
+            ENSURE_NODEMANAGER_DIR: "tmp/hadoop-hadoop/nm-local-dir/"
+        networks:
+          - hdfs_net
+        env_file:
+          - ./hadoop.config
+
+    spark-master:
+        image: apache/spark:3.5.4
+        command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+        hostname: spark
+        container_name: spark
+        ports:
+          - 8080:8080
+          - 7077:7077
+        environment:
+            SPARK_HOME: /opt/spark
+            HADOOP_USER_NAME: root
+        volumes:
+            - ./spark.conf:/opt/spark/conf/spark-defaults.conf
+            - ./shared:/opt/spark/work-dir
+        networks:
+            - hdfs_net
+
+    spark-worker-1:
+        image: apache/spark:3.5.4
+        command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+        depends_on:
+          - spark-master
+        environment:
+          SPARK_MODE: worker
+          SPARK_WORKER_CORES: 1
+          SPARK_WORKER_MEMORY: 1g
+          SPARK_MASTER_URL: spark://spark-master:7077
+          SPARK_HOME: /opt/spark
+          HADOOP_CONF_DIR: hdfs://resourcemanager:8088
+        volumes:
+            - ./spark.conf:/opt/spark/conf/spark-defaults.conf
+        networks:
+            - hdfs_net
+
+    spark-worker-2:
+        image: apache/spark:3.5.4
+        command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+        depends_on:
+          - spark-master
+        environment:
+          SPARK_MODE: worker
+          SPARK_WORKER_CORES: 1
+          SPARK_WORKER_MEMORY: 1g
+          SPARK_MASTER_URL: spark://spark-master:7077
+          SPARK_HOME: /opt/spark
+        volumes:
+            - ./spark.conf:/opt/spark/conf/spark-defaults.conf
+        networks:
+            - hdfs_net
+
+volumes:
+  datanode1:
+  datanode2:
+  namenode:
+  spark-logs:
+
+networks: 
+    hdfs_net:
+        # Specify driver options
+        driver: bridge
+        driver_opts:
+            com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
