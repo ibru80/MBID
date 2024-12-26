@@ -10,26 +10,21 @@ Este programa cada persona indique la suma del dinero gastado con tarjeta de cr�
 persona;gastoconTDC
 ''' 
 
-def filtroTarjetaDeCredito(record):
-    '''
-    Función que filtra los valores 
-    '''
-    if record[1] == "Tarjeta de Crédito": #Solo devolvemos la linea que contiene como medio de pago tarjeta de credito
-        return [ record[0], record[2] ]
-
-
- 
 #inicializacion 
 spark = SparkSession.builder.appName('personaGastosConTarjetaCredito').getOrCreate()  
 
 entrada = os.path.dirname(__file__) + "/persona_medio_pago_gasto.csv" #sys.argv[1] 
 salida = os.path.dirname(__file__) + "/salida3.txt"#sys.argv[2] 
 
-#cargamos los datos de entrada 
+# cargamos los datos de entrada 
 datosEntrada = spark.sparkContext.textFile(entrada) 
 
-# procesamos los datos de entrada e invocamos la funcion que filtra los datos 
-RDD_Filtrado = datosEntrada.map(lambda linea: linea.split(";")).filter(lambda x: x[1] == "Tarjeta de Crédito").map(lambda x: (x[0], x[2]) ).reduceByKey(lambda x, y: float(x) + float(y))
+# procesamos los datos de entrada e invocamos la funcion que filtra las lineas que no cumplen que tienen al menos 3 valores en split separados por ;
+# y también filtramos por los que en la 2a columna tiene el valor de metodo de pago "Tarjeta de Credito" 
+RDD_Filtrado = datosEntrada.map(lambda linea: linea.split(";")).filter(lambda x: len(x) > 2 and x[1] == "Tarjeta de Crédito")
+
+# Reducimos las tuplas a persona y gasto, reducimos por clave y sumamos el gasto
+RDD_reduce = RDD_Filtrado.map(lambda x: (x[0], x[2]) ).reduceByKey(lambda x, y: round(float(x) + float(y), 2) )
 
 #guardamos la salida 
-RDD_Filtrado.saveAsTextFile(salida) 
+RDD_reduce.saveAsTextFile(salida) 
