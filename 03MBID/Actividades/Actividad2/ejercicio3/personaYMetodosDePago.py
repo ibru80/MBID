@@ -11,11 +11,11 @@ Dado un dataset que contenga entradas con la forma
 ''' 
 
 #inicializacion 
-spark = SparkSession.builder.appName('personaGastosConTarjetaCredito').getOrCreate()  
+spark = SparkSession.builder.appName('personaYMetodosDePago').getOrCreate()  
 
-entrada = os.path.dirname(__file__) + "/persona_medio_pago_gasto.csv" #sys.argv[1] 
-salida1 = os.path.dirname(__file__) + "/comprasSinTDCMayorDe1500.txt"
-salida2 = os.path.dirname(__file__) + "/comprasSinTDCMenoroIgualDe1500.txt"
+entrada = sys.argv[1] 
+salida1 = "comprasSinTDCMayorDe1500.txt"
+salida2 = "comprasSinTDCMenoroIgualDe1500.txt"
 
 # cargamos los datos de entrada 
 datosEntrada = spark.sparkContext.textFile(entrada) 
@@ -29,14 +29,14 @@ RDD_Filtrado = datosEntrada.map(lambda linea: linea.split(";")).filter(lambda x:
 RDD_mas_1500 = RDD_Filtrado.filter(lambda x: float(x[2]) >= 1500).countByKey()
 
 # imprimimos el primero ya que esta ordenado en orden ascendente
-with open(salida1, 'w') as out:
-    for elem in RDD_mas_1500:
-        out.write( elem +";"+ str(RDD_mas_1500.get(elem)) +"\n" )
+# Crear un RDD con el resultado y guardarlo
+resultado_rdd = spark.sparkContext.parallelize([RDD_mas_1500])
+resultado_rdd.saveAsTextFile(salida1)
 
 # Vamos a extraer aquellas personas que al menos tienen un gasto de menos o igual de 1500 y contamos cuantas compras han hecho
 RDD_menos_1500 = RDD_Filtrado.filter(lambda x: float(x[2]) <= 1500).countByKey()
 
 # imprimimos el primero ya que esta ordenado en orden ascendente
-with open(salida2, 'w') as out:
-    for elem in RDD_menos_1500:
-        out.write( elem +";"+ str(RDD_menos_1500.get(elem)) +"\n" )
+# Crear un RDD con el resultado y guardarlo
+resultado_rdd = spark.sparkContext.parallelize([RDD_menos_1500])
+resultado_rdd.saveAsTextFile(salida2)

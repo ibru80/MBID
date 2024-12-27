@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import sys
+import os
 
 from pyspark.sql import SparkSession 
 
@@ -32,8 +33,10 @@ RDD_seleccionado = datosEntrada.map(lambda linea: linea.split("\t") ).filter(lam
 RDD_reduce = RDD_seleccionado.reduceByKey(lambda a, b: a + b).sortBy(lambda x: x[1] )
 
 # calculamos el minimo y convertimos la tupla en un string separado por ";"
-element_min = ';'.join(str(val) for val in RDD_reduce.first()).strip()
+element_min = RDD_reduce.first()  #';'.join(str(val) for val in RDD_reduce.first()).strip()
 
 # imprimimos el primero ya que esta ordenado en orden ascendente
-with open(salida, 'w') as out:
-    out.write( element_min )
+# Guardar el primer elemento en un archivo de texto en HDFS
+# Crear un RDD con el resultado y guardarlo
+resultado_rdd = spark.sparkContext.parallelize(element_min)
+resultado_rdd.saveAsTextFile(salida)
