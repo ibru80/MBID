@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
-import sys 
-import os
+import sys
 
 from pyspark.sql import SparkSession 
 
@@ -13,8 +12,8 @@ persona;gastoconTDC
 #inicializacion 
 spark = SparkSession.builder.appName('personaGastosConTarjetaCredito').getOrCreate()  
 
-entrada = os.path.dirname(__file__) + "/persona_medio_pago_gasto.csv" #sys.argv[1] 
-salida = os.path.dirname(__file__) + "/salida3.txt"#sys.argv[2] 
+entrada = sys.argv[1] 
+salida = sys.argv[2] 
 
 # cargamos los datos de entrada 
 datosEntrada = spark.sparkContext.textFile(entrada) 
@@ -26,5 +25,5 @@ RDD_Filtrado = datosEntrada.map(lambda linea: linea.split(";")).filter(lambda x:
 # Reducimos las tuplas a persona y gasto, reducimos por clave y sumamos el gasto
 RDD_reduce = RDD_Filtrado.map(lambda x: (x[0], x[2]) ).reduceByKey(lambda x, y: round(float(x) + float(y), 2) )
 
-#guardamos la salida 
+#guardamos la salida de las particiones del RDD
 RDD_reduce.saveAsTextFile(salida) 

@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
-import sys 
-import os
+import sys
 
 from pyspark.sql import SparkSession 
 
@@ -19,8 +18,8 @@ numero de comentarios del video (8), y una lista de ids de videos relacionados (
 # inicializacion 
 spark = SparkSession.builder.appName('categoriaDeVideosMenosVista').getOrCreate()  
 
-entrada = os.path.dirname(__file__) + "/0303" #sys.argv[1] 
-salida = os.path.dirname(__file__) + "/salida3.txt"#sys.argv[2] 
+entrada = sys.argv[1] 
+salida = sys.argv[2] 
 
 # cargamos los datos de entrada 
 datosEntrada = spark.sparkContext.textFile(entrada)
